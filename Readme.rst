@@ -35,10 +35,10 @@ From source:
 
 ::
 
-    git clone https://github.com/meshcat-dev/meshcat-python
+    git clone https://github.com/raphael-jms/meshcat-python
     git submodule update --init --recursive
     cd meshcat-python
-    python setup.py install
+    sudo python3 setup.py install
 
 You will need the ZeroMQ libraries installed on your system:
 
