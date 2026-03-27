@@ -3,7 +3,8 @@ import umsgpack
 import numpy as np
 import zmq
 import io
-from PIL import Image        
+import os
+from PIL import Image
 from IPython.display import HTML
 
 
@@ -32,6 +33,10 @@ class ViewerWindow:
             # the websocket connection is made seems to break the receiver
             # callback in the server until we reconnect.
             self.connect_zmq()
+
+        proxy_url = os.environ.get("MESHCAT_PROXY_URL")
+        if proxy_url is not None:
+            self.web_url = proxy_url
 
         print("You can open the visualizer by visiting the following URL:")
         print(self.web_url)
