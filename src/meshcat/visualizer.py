@@ -34,9 +34,11 @@ class ViewerWindow:
             # callback in the server until we reconnect.
             self.connect_zmq()
 
-        proxy_url = os.environ.get("MESHCAT_PROXY_URL")
-        if proxy_url is not None:
-            self.web_url = proxy_url
+        proxy_base = os.environ.get("MESHCAT_PROXY_BASE")
+        if proxy_base is not None:
+            from urllib.parse import urlparse
+            port = urlparse(self.web_url).port
+            self.web_url = f"{proxy_base.rstrip('/')}/{port}/static/"
 
         print("You can open the visualizer by visiting the following URL:")
         print(self.web_url)
